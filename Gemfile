@@ -9,3 +9,6 @@ gem 'rspec-rails', '>= 2.5', :group => [:development, :test]
 gem 'database_cleaner', :group => :test
 gem 'mongoid-rspec', :group => :test
 gem 'factory_girl_rails', :group => :test
+
+gem 'cucumber-rails', :group => :test
+gem 'capybara', :group => :test
