@@ -1,6 +1,17 @@
 Harare::Application.routes.draw do
   devise_for :users
-
+  
+  resources :disciplines do
+    resources :topics do
+      resources :posts do
+        resources :comments
+        resources :references do
+          resources :authors
+        end
+      end
+    end
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
