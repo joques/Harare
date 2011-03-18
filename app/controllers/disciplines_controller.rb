@@ -18,13 +18,13 @@ class DisciplinesController < ApplicationController
     @discipline = Discipline.find(params[:id])
     @discipline.name = params[:name]
     @discipline.topics = params[:topics]    
-    @discipline.save
+    @discipline.save!
     respond_with(@discipline)
   end
   
   def destroy
     @discipline = Discipline.find(params[:id])
-    @discipline.destroy
+    @discipline.destroy!
     render(:nothing => true, :status => :ok)
   end
 end

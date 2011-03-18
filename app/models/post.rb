@@ -1,9 +1,13 @@
 class Post
   include Mongoid::Document
+  field :guid
   field :title, :type => String
   field :article, :type => String
   field :creator, :type => String
   field :date_created, :type => DateTime
+  
+  key :guid
+  
   embeds_many :citations
   embeds_many :comments
   embedded_in :topic, :inverse_of => :posts
