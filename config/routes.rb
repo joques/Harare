@@ -12,7 +12,7 @@ Harare::Application.routes.draw do
     end
   end
   
-  resources :central_ids
+  resources :counters
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

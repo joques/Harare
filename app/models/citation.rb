@@ -1,11 +1,9 @@
 class Citation
   include Mongoid::Document
-  field :guid  
   field :resource_title, :type => String
   field :resource_type, :type => String
   field :date_of_publication, :type => DateTime
   
-  key :guid
   embeds_many :authors  
   embedded_in :post, :inverse_of => :citations
   

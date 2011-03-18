@@ -8,38 +8,23 @@ class TopicsController < ApplicationController
   end
   
   def update
-    @discipline = Discipline.find(params[:discipline_id])
-    @topic = nil
-    
-    @discipline.topics.each do |topic|
-      if topic.guid == params[:guid]
-        @topic = topic
-        break
-      end
-    end
+    @topic = findTopic(params[:discipline_id], params[:id])
     
     unless @topic.nil?
       @topic.description = params[:description]
-      @topic.keywords = params[:keywords]  
+      @topic.keywords = params[:keywords]
+      @topic.posts = params[:posts]
       @topic.save!
       respond_with(@topic)      
     end  
   end
   
   def destroy
-    @discipline = Discipline.find(params[:discipline_id])
-    @topic = nil
-    
-    @discipline.topics.each do |topic|
-      if topic.guid == params[:guid] then
-        @topic = topic
-        break
-      end
-      
-      unless @topic.nil?
-        @topic.destroy!
-        render(:nothing => true, :status => :ok)
-      end
+    @topic = findTopic(params[:discipline_id], params[:id])
+
+    unless @topic.nil?
+      @topic.destroy!
+      render(:nothing => true, :status => :ok)
     end
   end
 end
