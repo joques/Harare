@@ -10,4 +10,14 @@ class Topic
   validates :description, :presence => true
   validates :keywords, :presence => true
   attr_accessible :description, :keywords, :posts
+  
+  def as_json(options = {})
+    ret = {
+      :guid => self.id,
+      :id => self.id,
+      :description => self.description,
+      :keywords => self.keywords,
+      :posts => self.posts
+    }
+  end
 end
