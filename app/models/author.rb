@@ -11,4 +11,14 @@ class Author
   validates :email, :presence => true
   
   attr_accessible :first_name, :last_name, :email
+  
+  def as_json(options = {})
+      ret = {
+        :guid => self.id,
+        :id => self.id,
+        :first_name => self.first_name,
+        :last_name => self.last_name,
+        :email => self.email
+      }
+    end
 end

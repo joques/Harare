@@ -119,13 +119,4 @@ puts "Created new discipline: " << disc4.name
 topic9 = disc4.topics.create! :description => 'Policy Information system', :keywords => ['key22'], :posts => []
 puts "Created new topic " << topic9.description
 
-puts "Adding Counters"
-counters = Counter.create! :discipline_counter => 4, 
-                           :topic_counter => 9, 
-                           :post_counter => 2, 
-                           :comment_counter => 2, 
-                           :citation_counter => 2, 
-                           :author_counter => 3
-puts "Id counters created"
-
 puts "Creating Data :: End..."

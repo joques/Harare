@@ -10,4 +10,14 @@ class Comment
   validates :commentator, :presence => true
   
   attr_accessible :comment, :commentator, :date_created
+  
+  def as_json(options = {})
+    ret = {
+      :guid => self.id,
+      :id => self.id,
+      :comment => self.comment,
+      :commentator => self.commentator,
+      :date_created => self.date_created
+    }
+  end
 end

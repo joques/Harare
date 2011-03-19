@@ -14,4 +14,17 @@ class Post
   validates :article, :presence => true
   
   attr_accessible :title, :article, :creator, :date_created, :comments, :citations
+  
+  def as_json(options = {})
+    ret = {
+      :guid => self.id,
+      :id => self.id,
+      :title => self.title,
+      :article => self.article,
+      :creator => self.creator,
+      :date_created => self.date_created,
+      :citations => self.citations,
+      :comments => self.comments
+    }
+  end
 end
