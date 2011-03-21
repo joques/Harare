@@ -1,16 +1,20 @@
 Harare::Application.routes.draw do
   devise_for :users
   
-  resources :disciplines do
-    resources :topics, :only => [:create, :update, :destroy] do
-      resources :posts, :only => [:create, :update, :destroy] do
-        resources :comments, :only => [:create, :update, :destroy]
-        resources :references, :only => [:create, :update, :destroy] do
-          resources :authors, :only => [:create, :update, :destroy]
+  
+  scope "/CDL" do
+    resources :disciplines do
+      resources :topics, :only => [:create, :update, :destroy] do
+        resources :posts, :only => [:create, :update, :destroy] do
+          resources :comments, :only => [:create, :update, :destroy]
+          resources :references, :only => [:create, :update, :destroy] do
+            resources :authors, :only => [:create, :update, :destroy]
+          end
         end
       end
-    end
+    end    
   end
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
