@@ -2,11 +2,11 @@ Harare::Application.routes.draw do
   devise_for :users
   
   resources :disciplines do
-    resources :topics do
-      resources :posts do
-        resources :comments
-        resources :references do
-          resources :authors
+    resources :topics, :only => [:create, :update, :destroy] do
+      resources :posts, :only => [:create, :update, :destroy] do
+        resources :comments, :only => [:create, :update, :destroy]
+        resources :references, :only => [:create, :update, :destroy] do
+          resources :authors, :only => [:create, :update, :destroy]
         end
       end
     end
