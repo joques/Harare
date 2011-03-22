@@ -16,9 +16,8 @@ class DisciplinesController < ApplicationController
   
   def update
     @discipline = Discipline.find(params[:id])
-    @discipline.name = params[:name]
-    @discipline.topics = params[:topics]    
-    @discipline.save
+    @discipline.update_attributes(:name => params[:name])
+    # @discipline.save
     respond_with(@discipline)
   end
   

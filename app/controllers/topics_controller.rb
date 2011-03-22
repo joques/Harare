@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
     
   def create
     @discipline = Discipline.find(params[:discipline_id])
-    @topic = @discipline.topics.create!(params[:topic])
+    @topic = @discipline.topics.create(params[:topic])
     respond_with(@topic)
   end
   

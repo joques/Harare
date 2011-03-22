@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  protected
+  private
   
   #find a topic embedded in a given discipline
   def findTopic(discipline_id, topic_id)
