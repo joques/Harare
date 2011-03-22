@@ -1,7 +1,6 @@
 Harare::Application.routes.draw do
   devise_for :users
-  
-  
+    
   scope "/CDL" do
     resources :disciplines do
       resources :topics, :only => [:create, :update, :destroy] do

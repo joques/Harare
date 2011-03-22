@@ -6,7 +6,8 @@ class PostsController < ApplicationController
       @post = nil      
       
       unless @topic.nil?
-        @post = @topic.posts.create!(params[:post])
+        @post = @topic.posts.create(:title => params[:title], :article => params[:article], :creator => params[:creator], 
+        :date_created => params[:date_created], :citations => params[:citations], :comments => params[:comments])
       end
       
       respond_with(@post)
@@ -16,13 +17,8 @@ class PostsController < ApplicationController
       @post = findPost(params[:discipline_id], params[:topic_id], params[:id])
       
       unless @post.nil?
-        @post.title = params[:title]
-        @post.article = params[:article]
-        @post.creator = params[:creator]
-        @post.date_created = params[:date_created]
-        @post.comments = params[:comments]
-        @post.citations = params[:citations]
-        @post.save!          
+        @post.update_attributes(:title => params[:title], :article => params[:article], :creator => params[:creator],
+        :date_created => params[:date_created])
       end
 
       respond_with(@post)
@@ -32,7 +28,7 @@ class PostsController < ApplicationController
       @post = findPost(params[:discipline_id], params[:topic_id], params[:id])
       
       unless @post.nil?
-        @post.destroy!
+        @post.destroy
         render(:nothing => true, :status => :ok)
       end
     end

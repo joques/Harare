@@ -6,7 +6,8 @@ class AuthorsController < ApplicationController
     @citation = findCitation(params[:discipline_id], params[:topic_id], params[:post_id], params[:citation_id])
     
     unless @citation.nil?
-      @author = @citation.authors.create!(params[:author])
+      @author = @citation.authors.create(:first_name => params[:first_name], 
+      :last_name => params[:last_name], :email => params[:email])
     end
     
     respond_with(@author)
@@ -16,10 +17,8 @@ class AuthorsController < ApplicationController
     @author = findAuthor(params[:discipline_id], params[:topic_id], params[:post_id], params[:citation_id], params[:id])
     
     unless @author.nil?
-      @author.first_name = params[:first_name]
-      @author.last = params[:last_name]
-      @author.email = params[:email]
-      @author.save!
+      @author.update_attributes(:first_name => params[:first_name], 
+      :last_name => params[:last_name], :email => params[:email])
     end
     
     respond_with(@author)
@@ -29,7 +28,7 @@ class AuthorsController < ApplicationController
     @author = findAuthor(params[:discipline_id], params[:topic_id], params[:post_id], params[:citation_id], params[:id])    
     
     unless @author.nil?
-      @author.destroy!
+      @author.destroy
       render(:nothing => true, :status => :ok)
     end
   end

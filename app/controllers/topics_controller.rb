@@ -3,7 +3,8 @@ class TopicsController < ApplicationController
     
   def create
     @discipline = Discipline.find(params[:discipline_id])
-    @topic = @discipline.topics.create(params[:topic])
+    @topic = @discipline.topics.create(:description => params[:description],
+    :keywords => params[:keywords], :posts => params[:posts])
     respond_with(@topic)
   end
   
@@ -11,10 +12,7 @@ class TopicsController < ApplicationController
     @topic = findTopic(params[:discipline_id], params[:id])
     
     unless @topic.nil?
-      @topic.description = params[:description]
-      @topic.keywords = params[:keywords]
-      @topic.posts = params[:posts]
-      @topic.save!
+      @topic.update_attributes(:description => params[:description], :keywords => params[:keywords])
       respond_with(@topic)      
     end  
   end
@@ -23,7 +21,7 @@ class TopicsController < ApplicationController
     @topic = findTopic(params[:discipline_id], params[:id])
 
     unless @topic.nil?
-      @topic.destroy!
+      @topic.destroy
       render(:nothing => true, :status => :ok)
     end
   end
