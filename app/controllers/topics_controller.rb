@@ -2,8 +2,22 @@ class TopicsController < ApplicationController
   respond_to :json
     
   def create
+    puts "From Topics Controller Create"
+    puts "discipline_id = " << params[:discipline_id]
+    puts "description = " << params[:description]
+    puts "keywords = " << params[:keywords]
+    
     @discipline = Discipline.find(params[:discipline_id])
-    @topic = @discipline.topics.create(:description => params[:description],:keywords => params[:keywords], :posts => params[:posts])
+    
+    puts "Found discipline " << @discipline.name
+    
+    
+    @discipline.topics.build
+
+    puts "Does it have topics? " << @discipline.topics.nil?
+
+    
+    @topic = @discipline.topics.create!(:description => params[:description],:keywords => params[:keywords])
     puts "Created new topic " << @topic.description
     respond_with(@topic)
   end
