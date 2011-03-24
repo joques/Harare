@@ -10,7 +10,8 @@ class DisciplinesController < ApplicationController
   end
   
   def create
-    respond_with(@discipline = Discipline.create!(:name => params[:name]))
+    @discipline = Discipline.create! :name => params[:name]
+    respond_with(@discipline)
   end
   
   def update

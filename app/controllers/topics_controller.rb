@@ -2,34 +2,23 @@ class TopicsController < ApplicationController
   respond_to :json
     
   def create
-    puts "From Topics Controller Create"
-    puts "discipline_id = " << params[:discipline_id]
-    puts "description = " << params[:description]
-    puts "keywords = " << params[:keywords]
-    
     @discipline = Discipline.find(params[:discipline_id])
-    
-    puts "Found discipline " << @discipline.name
-    
-    
-    @discipline.topics.build
-
-    puts "Does it have topics? " << @discipline.topics.nil?
-
-    
-    @topic = @discipline.topics.create!(:description => params[:description],:keywords => params[:keywords])
-    puts "Created new topic " << @topic.description
-    respond_with(@topic)
+    @topic = Topic.new :description => params[:description], :Keywords => params[:keywords]
+    @discipline.topics << @topic
+    @discipline.save
+            
+    respond_with(@discipline)
   end
   
   def update
-    @topic = findTopic(params[:discipline_id], params[:id])
+    @discipline = Discipline.find(params[:discipline_id])
     
+    @topic = findTopic(params[:discipline_id], params[:id])    
     unless @topic.nil?
-      puts "topic not nil"
       @topic.update_attributes(:description => params[:description], :keywords => params[:keywords])
-      respond_with(@topic)      
-    end    
+    end
+
+    respond_with(@discipline)          
   end
   
   def destroy

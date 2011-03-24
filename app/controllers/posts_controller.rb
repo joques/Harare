@@ -2,26 +2,27 @@ class PostsController < ApplicationController
     respond_to :json
     
     def create
+      @discipline = Discipline.find(params[:discipline_id])
       @topic = findTopic(params[:discipline_id], params[:topic_id])
-      @post = nil      
-      
+
       unless @topic.nil?
-        @post = @topic.posts.create(:title => params[:title], :article => params[:article], :creator => params[:creator], 
-        :date_created => params[:date_created], :citations => params[:citations], :comments => params[:comments])
+        @post = Post.new :title => params[:title], :article => params[:article], :creator => params[:creator], :date_created => params[:date_created]
+        @topic.posts << @post
+        @discipline.save
       end
       
-      respond_with(@post)
+      respond_with(@discipline)
     end
     
     def update
-      @post = findPost(params[:discipline_id], params[:topic_id], params[:id])
+      @discipline = Discipline.find(params[:discipline_id])
       
+      @post = findPost(params[:discipline_id], params[:topic_id], params[:id])      
       unless @post.nil?
-        @post.update_attributes(:title => params[:title], :article => params[:article], :creator => params[:creator],
-        :date_created => params[:date_created])
+        @post.update_attributes(:title => params[:title], :article => params[:article], :creator => params[:creator], :date_created => params[:date_created])
       end
 
-      respond_with(@post)
+      respond_with(@discipline)
     end
     
     def destroy
