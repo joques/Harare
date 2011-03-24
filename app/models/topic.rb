@@ -8,7 +8,7 @@ class Topic
   embedded_in :discipline, :inverse_of => :topics
   
   validates :description, :presence => true
-  validates :keywords, :presence => true
+  # validates :keywords, :presence => true
   attr_accessible :description, :keywords, :posts
   
   def as_json(options = {})

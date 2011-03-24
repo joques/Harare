@@ -6,7 +6,7 @@ class Discipline
   
   validates :name, :presence => true 
   attr_accessible :name, :topics
-  
+  accepts_nested_attributes_for :topics  
   
   def as_json(options = {})
     ret = {

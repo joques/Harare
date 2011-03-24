@@ -7,7 +7,7 @@ Mongoid.master.collections.reject {|c| c.name =~ /^system/}.each(&:drop)
 
 puts 'Setting up default user'
 
-user = User.create! :name => 'John Galt',
+user = User.create :name => 'John Galt',
                     :email => 'cinnamon@cdl.net',
                     :password => 'cinnamon',
                     :password_confirmation => 'cinnamon'

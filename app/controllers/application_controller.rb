@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     
     @discipline = Discipline.find(discipline_id)
     @discipline.topics.each do |topic|
-      if topic.guid == topic_id then
+      if topic_id == topic.id.to_s then
         @topic = topic
         break
       end
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     @topic = findTopic(discipline_id, topic_id)
     unless @topic.nil?
       @topic.posts.each do |post|
-        if post.guid == post_id then
+        if post_id == post_id.to_s then
           @post = post
           break
         end
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
     
     unless @post.nil?
       @post.comments.each do |comment|
-        if comment.guid == comment_id then
+        if comment_id == comment.id.to_s then
           @comment = comment
           break
         end
@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
     
     unless @post.nil?
       @post.citations.each do |citation|
-        if citation.guid == citation_id then
+        if citation_id == citation.id.to_s then
           @citation = citation
           break
         end
@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
     
     unless @citation.nil?
       @citation.authors.each do |author|
-        if author.guid == author_id then
+        if author_id == author.id.to_s then
           @author = author
           break
         end
