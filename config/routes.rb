@@ -6,7 +6,7 @@ Harare::Application.routes.draw do
       resources :topics, :only => [:create, :update, :destroy] do
         resources :posts, :only => [:create, :update, :destroy] do
           resources :comments, :only => [:create, :update, :destroy]
-          resources :references, :only => [:create, :update, :destroy] do
+          resources :citations, :only => [:create, :update, :destroy] do
             resources :authors, :only => [:create, :update, :destroy]
           end
         end
