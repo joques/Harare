@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new :description => params[:description], :Keywords => params[:keywords]
     @discipline.topics << @topic
     @discipline.save
-            
+    
     respond_with(@discipline)
   end
   
