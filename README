@@ -1,4 +1,6 @@
-Todo: Need to update this tutorial following the latest version of rails
+Todo: Need to update this tutorial following the latest version of rails.
+	  I should also include a tutorial about how to authenticate users with
+	  devise
 
 == Welcome to Rails
 
